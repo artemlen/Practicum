@@ -126,8 +126,11 @@ help()
 while True:
     vvod = input('Введите команду и параметры: ')
     vvod = vvod.split()
-    command = vvod[0]
-
+    command = ''
+    try:
+        command = vvod[0]
+    except:
+        print('Что-то пошло не так')
     if command == "mkfold":
         try:
             mkfold(vvod[-1])
