@@ -2,5 +2,5 @@ import os
 import sys
 
 def start_place():
-    os.chdir('/Users/olgalengauer/Artem_home/PyCharm/file-manager/') #Установите путь по умолчанию здесь
+    os.chdir('C:\\Users\\204493\\Downloads\\') #Установите путь по умолчанию здесь(Если виндовс разделитель равен "\\" )
 
