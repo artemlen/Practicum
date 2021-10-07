@@ -96,9 +96,11 @@ def cet(file_name):
         print('Что-то пошло не так')
 
 def rewrite(file_name, content):
-    file = open(file_name, "w")
-    file.write(content)
-
+    try:
+        file = open(file_name, "w")
+        file.write(content)
+    except:
+        print('Что-то пошло не так')
 def add(file_name, content):
     file = open(file_name, "a")
     file.write(content)
@@ -191,33 +193,39 @@ while True:
         except:
             print('что-то пошло не так')
     if command == "rewrite":
-        sum = ""
-        for i in range(len(vvod)):
-            if i > 1:
-                sum = sum +" "+ vvod[i]
-        rewrite(vvod[1], sum)
-
+        try:
+            sum = ""
+            for i in range(len(vvod)):
+                if i > 1:
+                    sum = sum +" "+ vvod[i]
+            rewrite(vvod[1], sum)
+        except:
+            print('Что-то пошло не так')
     if command == "add":
-        sum = ""
-        for i in range(len(vvod)):
-            if i > 1:
-                sum = sum +" "+ vvod[i]
-        add(vvod[1], sum)
-
+        try:
+            sum = ""
+            for i in range(len(vvod)):
+                if i > 1:
+                    sum = sum +" "+ vvod[i]
+            add(vvod[1], sum)
+        except:
+            print('Что-то пошло не так')
     if command == "exit":
        sys.exit()
 
     if command == 'rename':
-        if len(vvod) < 4:
-            rename(vvod[1],vvod[-1])
-        else:
-            print("Слишком много аргументов")
-
+        try:
+            if len(vvod) < 4:
+                rename(vvod[1],vvod[-1])
+            else:
+                print("Слишком много аргументов")
+        except:
+            print('Что-то пошло не так')
     if command == 'copy':
         try:
             copy(vvod[1], vvod[-1])
         except:
-            pritn('Что-то пошло не так')
+            print('Что-то пошло не так')
     if command == 'move':
         try:
             move(vvod[1], vvod[-1])
