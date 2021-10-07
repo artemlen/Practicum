@@ -7,6 +7,26 @@ import settings as sett
 sett.start_place()
 
 
+OS = sys.platform
+if OS == 'darwin':
+    symbol_l = '/'
+
+elif OS == 'cygwin' or OS == 'win32' :
+    symbol_l = "\\"
+
+else:
+    symbol_l = "/"
+
+
+tr = os.getcwd()
+tr = tr.split(symbol_l)
+tr = tr[:-1:]
+tr_len = len(tr)
+
+
+
+
+
 def mkfold(folder_name):
     os.mkdir(folder_name)
 
@@ -32,12 +52,16 @@ def cf(path):
         p[0] = ""
         p[-1] = ""
 
-        sum = ""
-        for i in range(len(p)):
-            sum = sum + symbol + p[i]
-        sum = sum[1::]
+        if len(p)-1 > tr_len:
 
-        os.chdir(sum)
+            sum = ""
+            for i in range(len(p)):
+                sum = sum + symbol + p[i]
+            sum = sum[1::]
+
+            os.chdir(sum)
+        else:
+            print('Дальше нельзя')
 
     elif  "."+symbol in path:
         p = str(os.getcwd())+symbol+path[2::]
@@ -126,11 +150,8 @@ help()
 while True:
     vvod = input('Введите команду и параметры: ')
     vvod = vvod.split()
-    command = ''
-    try:
-        command = vvod[0]
-    except:
-        print('Что-то пошло не так')
+    command = vvod[0]
+
     if command == "mkfold":
         try:
             mkfold(vvod[-1])
